@@ -4,5 +4,5 @@ class Car(Vehicle):
         super().__init__(name)
         self._model = 'car'
 
-    def definition(self):
+    def __str__(self):
         return f'{self._model} - {super().name}'

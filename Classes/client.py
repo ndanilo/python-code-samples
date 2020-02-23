@@ -10,7 +10,7 @@ print(f.name)
 c = Car('Ferrari')
 m = Motorcycle('Fazer 250')
 
-print(c.definition())
-print(m.definition())
+print(c)
+print(m)
 
 
