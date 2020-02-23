@@ -8,8 +8,7 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            //"program": "${workspaceFolder}/model.py",
-            "program": "${file}",
+            "program": "${workspaceFolder}/client.py",
             "console": "integratedTerminal"
         }
     ]
