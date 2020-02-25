@@ -2,6 +2,7 @@ from Models.model import *
 from Models.car import Car
 from Models.motorcycle import Motorcycle
 from Models.clientlist import ClientList
+from Models.basemixin import ClientMixin
 
 f = Movie()
 f.name = 'avatar o menino do gelo'
@@ -23,4 +24,5 @@ clients.add('Felipe')
 
 print(clients)
 
-
+mixinClient = ClientMixin('Pedro')
+mixinClient.showName()
