@@ -26,3 +26,5 @@ print(clients)
 
 mixinClient = ClientMixin('Pedro')
 mixinClient.showName()
+mixinClient.nome = 'Matias'
+mixinClient.showName()

@@ -13,3 +13,11 @@ class ClientMixin(BaseMixin):
     def showName(self):
         super().showName()
         print(self.__nome)
+
+    @property
+    def nome(self):
+        return self.__nome
+
+    @nome.setter
+    def nome(self, value):
+        self.__nome = value
