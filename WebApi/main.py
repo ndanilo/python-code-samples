@@ -1,30 +1,26 @@
-from flask import Flask
+from datetime import datetime
+from Models.item import Item
+from flask import Flask, jsonify
 from flask_restful import reqparse, abort, Api, Resource
+import json
 
-class Quotes(Resource):
-    def __init__(self):
-        self.__parser = reqparse.RequestParser()
-        self.__parser.add_argument('name', type=str, help='Name to charge for this resource', required=True)
+class Notes(Resource):
+    __items = []
 
     def get(self):
-        return {
-            'William Shakespeare': {
-                'quote': ['Love all,trust a few,do wrong to none',
-                'Some are born great, some achieve greatness, and some greatness thrust upon them.']
-        },
-        'Linus': {
-            'quote': ['Talk is cheap. Show me the code.']
-            }
-        }, 200
-    def post(self):
-        args = self.__parser.parse_args()
-        return 'forced error', 500
-        return args, 201
+        item = Item()
+        item.Id = 123
+        item.Description = 'Some Description'
+        item.Date = datetime.now()
+        self.__items.append(item)
+
+        response = app.response_class(response=json.dumps([ j.__dict__() for j in self.__items ]),status=200,mimetype='application/json')
+        return response
 
 app = Flask(__name__)
 api = Api(app)
 
-api.add_resource(Quotes, '/')
+api.add_resource(Notes, '/notes')
 
 if __name__ == '__main__':
     app.run(debug=True)
