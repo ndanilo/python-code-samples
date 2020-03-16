@@ -21,17 +21,17 @@ class Item:
 
     @property
     def Date(self):
-        return self.__date.strftime("%Y-%m-%d %H:%M:%S")
+        return self.__date
 
     @Date.setter
     def Date(self, value):
         self.__date = value
 
-    def __dict__(self):
+    def to_json(self):
         return {
             'Id':self.Id,
             'Description':self.Description,
-            'Date':self.Date
+            'Date':self.Date.isoformat()
         }
 
     def __str__(self):
