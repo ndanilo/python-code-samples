@@ -8,8 +8,12 @@ from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
 api = Api(app)
+app.config.from_pyfile('config.cfg')
+
+'''
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://root:root@localhost:1433/python_db1?driver=SQL+Server'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True 
+'''
 
 db = SQLAlchemy(app)
 
