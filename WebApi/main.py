@@ -26,12 +26,20 @@ subs = db.Table('Subs',
     db.Column('Channel_Id', db.BigInteger(), db.ForeignKey('Channels.Id'))
 )
 
+class Wallet(db.Model):
+    __tablename__ = 'Wallets'
+    id = db.Column('Id', db.BigInteger(), primary_key=True)
+    name = db.Column('Name',db.String(50))
+    player_id = db.Column('Player_Id', db.BigInteger(), db.ForeignKey('Players.Id'), unique=True)
+    player = db.relationship('Player', uselist=False)
+
 class Player(db.Model):
     __tablename__='Players'
     id = db.Column('Id', db.BigInteger, primary_key=True)
     name = db.Column('Name', db.String(50))
     clubs = db.relationship('Club', backref='player')
     subscriptions = db.relationship('Channel', secondary=subs,backref=db.backref('subscribers'))
+    wallet = db.relationship('Wallet', uselist=False)
 
     def __init__(self, name):
         self.name = name
