@@ -16,19 +16,29 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 '''
 
 db = SQLAlchemy(app)
-
 migrate = Migrate(app, db)
 manager = Manager(app)
 
 manager.add_command('db', MigrateCommand)
 
-class Test(db.Model):
-    __tablename__='Teste'
+class Player(db.Model):
+    __tablename__='Players'
     id = db.Column('Id', db.BigInteger, primary_key=True)
     name = db.Column('Name', db.String(50))
+    clubs = db.relationship('Club', backref='player')
 
     def __init__(self, name):
         self.name = name
+
+class Club(db.Model):
+    __tablename__ = 'Clubs'
+    id = db.Column('Id', db.BigInteger, primary_key=True)
+    name = db.Column('Name', db.String(50), unique=True)
+    player_id = db.Column('Player_Id', db.BigInteger, db.ForeignKey('Players.Id'))
+
+    def __init__(self, name, player):
+        self.name = name
+        self.player = player
 
 '''
 api.add_resource(NotesList, '/notes')
