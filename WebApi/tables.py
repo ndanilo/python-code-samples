@@ -16,8 +16,9 @@ def defineDb(_db):
             __tablename__='Players'
             id = db.Column('Id', db.BigInteger, primary_key=True)
             name = db.Column('Name', db.String(50))
-            clubs = db.relationship('Club', backref='player')
-            subscriptions = db.relationship('Channel', secondary=subs,backref=db.backref('subscribers'))
+            clubs = db.relationship('Club', backref='player', lazy='dynamic')
+            #subscriptions = db.relationship('Channel', secondary=subs,backref=db.backref('subscribers'), lazy='dynamic')
+            subscriptions = db.relationship('Channel', secondary=subs, lazy='dynamic')
             wallet = db.relationship('Wallet', uselist=False)
 
             def __init__(self, name):
@@ -37,6 +38,7 @@ def defineDb(_db):
             __tablename__ = 'Channels'
             id = db.Column('Id', db.BigInteger(), primary_key=True)
             name = db.Column('Name', db.String(50))
+            subscribers = db.relationship('Player', secondary=subs, lazy='dynamic')
             
             def __init__(self, name):
                 self.name = name
