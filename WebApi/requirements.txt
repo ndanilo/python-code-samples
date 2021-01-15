@@ -27,7 +27,7 @@ Jinja2==2.11.1
 jmespath==0.9.4
 lazy-object-proxy==1.4.3
 lockfile==0.12.2
-lxml==4.4.1
+lxml==4.6.2
 Mako==1.1.2
 MarkupSafe==1.1.1
 mccabe==0.6.1
