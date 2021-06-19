@@ -8,7 +8,7 @@ def get_html_of_url(url):
     resp = requests.get(url)
 
     if (resp.status_code != 200):
-        print(f'HTTP status code of {resp.status_code} returned, but 200 expected. Exiting ...')
+        print(f'HTTP status code of {resp.status_code} returned, but 200 was expected. Exiting ...')
         exit(1)
     
     return resp.content.decode(encoding="ISO-8859-1")
