@@ -48,16 +48,14 @@ def main(url,length,top_words):
     word_count = map_word_ocurrences(all_words,length)
 
     if len(word_count) == 0:
-        print(f'No words found with in the specified length size. length: {length}. Exiting ...')
+        print(f'No words found with specified length size. length: {length}. Exiting ...')
         exit(0)
 
     sorted_words = sort_words(word_count)
     min_value = min(len(sorted_words), top_words)
 
-    top = 0
-    while top < min_value:
-        print(f'{sorted_words[top][0]}: {sorted_words[top][1]}')
-        top += 1
+    for i in range(min_value):
+        print(f'{sorted_words[i][0]}: {sorted_words[i][1]}')
 
 if __name__ == "__main__":
     main()
